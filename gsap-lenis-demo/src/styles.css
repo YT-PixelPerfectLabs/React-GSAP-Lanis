@@ -1,0 +1,72 @@
+/* Hardening for Lenis */
+html, body { scroll-behavior: auto; }
+html, body { height: 100%; }
+body { margin: 0; overscroll-behavior: none; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+
+:root {
+  --bg: #0f1116;
+  --bg-2: #0a0c10;
+  --fg: #e9eef6;
+  --accent: #7cc4ff;
+}
+
+.section {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 4rem 2rem;
+  color: var(--fg);
+}
+
+.section--intro { background: var(--bg); }
+.section--outro { background: var(--bg); }
+
+.section--pin {
+  background: var(--bg-2);
+  padding: 0;
+}
+
+.headline {
+  font-size: clamp(2rem, 6vw, 5rem);
+  text-align: center;
+  line-height: 1.05;
+  letter-spacing: .01em;
+}
+.subtle { opacity: .75; margin-top: 1rem; }
+
+/* Pinned stage container */
+.stage {
+  position: relative;
+  width: min(90vw, 1000px);
+  height: min(70vh, 700px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  background:
+    radial-gradient(80% 80% at 50% 50%, rgba(124,196,255,0.08), transparent 70%),
+    linear-gradient(to bottom right, rgba(255,255,255,0.05), rgba(255,255,255,0));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35) inset;
+  overflow: hidden;
+}
+
+/* The animated box */
+.box {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent), #89f7fe);
+  color: #071018;
+  font-weight: 700;
+  user-select: none;
+  will-change: transform;
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.35),
+    inset 0 0 0 2px rgba(0,0,0,0.15);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0ms !important; transition-duration: 0ms !important; }
+}
